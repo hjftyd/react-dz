@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import data from "./data.json";
