@@ -2,10 +2,14 @@ import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import data from "./data.json";
-import ReadOnlyRow from "./ReadOnlyRow";
 
-
-
+const ReadOnlyRow = ({ contact }) => {
+  return (
+    <tr>
+      <td>{contact.fullName}</td>     
+    </tr>
+  );
+};
 const App = () => {
   const [contacts, setContacts] = useState(data);
   const [countPressDelete, setCountPressDelete] = useState(0)
@@ -14,14 +18,14 @@ const App = () => {
     fullName: "",
   });
 
-  const [editFormData, setEditFormData] = useState({
+  const [editFormData] = useState({
     fullName: "",
   });
 
-  const [editContactId, setEditContactId] = useState(null);
+  const [editContactId] = useState(null);
 
   const handleAddFormChange = (event) => {
-    event.preventDefault();
+    
 
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
@@ -78,42 +82,37 @@ const del = () => {
   setCountPressDelete(countPressDelete + 1)
   handleDeleteClick(contacts.length)
 }
-
   return (
     <div className="app">
       <form onSubmit={handleEditFormSubmit}>
-        <>
+       
           <div className="listHeader">
             count: {contacts.length}       
           </div>
             {contacts.map((contact) => (
-              <div className="listItem">
-                <Fragment >
+              <div className="listItem">              
                     <ReadOnlyRow
-                      contact={contact}
-                      handleDeleteClick={handleDeleteClick}
-                    />
-                </Fragment>
+                      contact={contact}                   
+                    />          
               </div>
-            ))}        
-          </>
+            ))}                 
       </form>
-
-      <form onSubmit={handleAddFormSubmit} style = {{display: "flex", flexDirection: "column", width: 300}}>
-        <input
+      <form  onSubmit={handleAddFormSubmit} style = {{display: "flex", flexDirection: "column", width: 300}}>       
+        <input         
           type="text"
           name="fullName"
           required="required"
           placeholder="Название"
           onChange={handleAddFormChange}
-        />       
-        <button  type="submit" onClick={() => add()}>Добавить {countPressAdd !== 0  && '(' + countPressAdd + ')'}</button>
+        />             
+        <button type="submit" onClick={() => add()}>Добавить {countPressAdd !== 0  && '(' + countPressAdd + ')'}</button>
         <button  type="button" onClick={() => del()}>
           Убрать {countPressDelete !== 0 && '(' + countPressDelete + ')'}
-        </button>     
+        </button>            
       </form>
     </div>
   );
 };
+  
 
 export default App;
