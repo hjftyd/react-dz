@@ -12,7 +12,6 @@ const ReadOnlyRow = ({ contact }) => {
 };
 const App = () => {
   const [contacts, setContacts] = useState(data);
-  
   const [countPressDelete, setCountPressDelete] = useState(0)
   const [countPressAdd, setCountPressAdd] = useState(0)
   const [addFormData, setAddFormData] = useState({
