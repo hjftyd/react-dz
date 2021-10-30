@@ -12,17 +12,12 @@ const ReadOnlyRow = ({ contact }) => {
 };
 const App = () => {
   const [contacts, setContacts] = useState(data);
+  
   const [countPressDelete, setCountPressDelete] = useState(0)
   const [countPressAdd, setCountPressAdd] = useState(0)
   const [addFormData, setAddFormData] = useState({
     fullName: "",
   });
-
-  const [editFormData] = useState({
-    fullName: "",
-  });
-
-  const [editContactId] = useState(null);
 
   const handleAddFormChange = (event) => {
     
@@ -56,7 +51,7 @@ const App = () => {
 
     setContacts(newContacts);
   };
- 
+  
 const add = () => {
   setCountPressAdd(countPressAdd + 1)
 }
