@@ -26,7 +26,6 @@ const App = () => {
 
   const handleAddFormChange = (event) => {
     
-
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
@@ -48,23 +47,6 @@ const App = () => {
     setContacts(newContacts);
   };
 
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
-
-    const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,    
-    };
-
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
-
-    newContacts[index] = editedContact;
-
-    setContacts(newContacts);
-  };
-
   const handleDeleteClick = (contactId) => {
     const newContacts = [...contacts];
 
@@ -74,7 +56,7 @@ const App = () => {
 
     setContacts(newContacts);
   };
-
+ 
 const add = () => {
   setCountPressAdd(countPressAdd + 1)
 }
@@ -84,8 +66,7 @@ const del = () => {
 }
   return (
     <div className="app">
-      <form onSubmit={handleEditFormSubmit}>
-       
+      <form> 
           <div className="listHeader">
             count: {contacts.length}       
           </div>
@@ -97,15 +78,15 @@ const del = () => {
               </div>
             ))}                 
       </form>
-      <form  onSubmit={handleAddFormSubmit} style = {{display: "flex", flexDirection: "column", width: 300}}>       
-        <input         
-          type="text"
+      <form onSubmit={handleAddFormSubmit} style = {{display: "flex", flexDirection: "column", width: 300}}>       
+        <input               
+          type="text"          
           name="fullName"
           required="required"
           placeholder="Название"
           onChange={handleAddFormChange}
         />             
-        <button type="submit" onClick={() => add()}>Добавить {countPressAdd !== 0  && '(' + countPressAdd + ')'}</button>
+        <button type="submit"  onClick={() => add()} >Добавить {countPressAdd !== 0  && '(' + countPressAdd + ')'}</button>
         <button  type="button" onClick={() => del()}>
           Убрать {countPressDelete !== 0 && '(' + countPressDelete + ')'}
         </button>            
@@ -113,6 +94,5 @@ const del = () => {
     </div>
   );
 };
-  
 
 export default App;
